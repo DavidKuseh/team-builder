@@ -32,6 +32,43 @@
   }
 }
 
+.formHeading {
+  width: 150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
 .formHeading span{
   font-size: 20px;
+}
+
+.member{
+  width: 200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top:10px;
+}
+
+.member span{
+  width: 200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.member div{
+  display: flex;
+  justify-content: space-between;
+}
+
+form div{
+  padding: 5px;
+}
+
+form label {
+  margin-right: 15px;
 }

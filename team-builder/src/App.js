@@ -34,7 +34,9 @@ function TeamList({ teamMembers }) {
         <span>Name</span>
         <span>Role</span>
       </div>
-      {teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } key={uuid()}/>)}
+      <div className="member">
+      <span>{teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } key={uuid()}/>)}</span>
+      </div>
     </>
   );
 } 
