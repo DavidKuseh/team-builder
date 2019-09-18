@@ -31,3 +31,7 @@
     transform: rotate(360deg);
   }
 }
+
+.formHeading span{
+  font-size: 20px;
+}

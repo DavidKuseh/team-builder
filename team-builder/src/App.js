@@ -30,11 +30,11 @@ function TeamList({ teamMembers }) {
   return (
     <>
       <h2>Team List</h2>
-      <div>
+      <div className="formHeading">
         <span>Name</span>
         <span>Role</span>
       </div>
-      {teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } />)}
+      {teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } key={uuid()}/>)}
     </>
   );
 } 
@@ -69,7 +69,7 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setTeamMembers( [...teamMembers, formValues ]);
+    setTeamMembers( [...teamMembers, {...formValues, id: uuid()} ]);
     setFormValues(initialFormValues);
   }
 
