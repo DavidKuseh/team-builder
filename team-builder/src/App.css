@@ -33,7 +33,7 @@
 }
 
 .formHeading {
-  width: 150px;
+  width: 300px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@
 }
 
 .member{
-  width: 200px;
+  width: 400px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -53,8 +53,7 @@
 }
 
 .member span{
-  width: 200px;
-  margin: auto;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

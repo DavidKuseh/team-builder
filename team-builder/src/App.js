@@ -3,17 +3,17 @@ import uuid from 'uuid';
 import './App.css';
 
 const initialTeamMembers = [
-  {id: uuid(), name: 'Martin', role: 'Team Lead'},
-  {id: uuid(), name: 'Temi', role: 'FSW Student'},
-  {id: uuid(), name: 'Justin', role: 'FSW Student'},
-  {id: uuid(), name: 'Femi', role: 'FSW Student'},
-  {id: uuid(), name: 'Alison', role: 'FSW Student'},
-  {id: uuid(), name: 'David', role: 'FSW Student'},
-
+  {id: uuid(), name: 'Martin', email: 'Martin@gmail.com', role: 'Team Lead'},
+  {id: uuid(), name: 'Temi', email: 'Temi@gmail.com', role: 'FSW Student'},
+  {id: uuid(), name: 'Justin', email: 'Justin@gmail.com', role: 'FSW Student'},
+  {id: uuid(), name: 'Femi', email: 'Femi@gmail.com', role: 'FSW Student'},
+  {id: uuid(), name: 'Alison', email: 'Alison@gmail.com', role: 'FSW Student'},
+  {id: uuid(), name: 'David', email: 'David@gmail.com', role: 'FSW Student'},
 ];
 
 const initialFormValues = {
   name: '',
+  email: '',
   role: '',
 }
 
@@ -21,6 +21,7 @@ function TeamMember({ teamMember }) {
   return (
     <div>
       <span>{teamMember.name}</span>
+      <span>{teamMember.email}</span>
       <span>{teamMember.role}</span>
     </div>
   );
@@ -32,6 +33,7 @@ function TeamList({ teamMembers }) {
       <h2>Team List</h2>
       <div className="formHeading">
         <span>Name</span>
+        <span>Email</span>
         <span>Role</span>
       </div>
       <div className="member">
@@ -49,6 +51,10 @@ function Form({formValues, handleChange, onSubmit, isDisabled}) {
         <div>
           <label htmlFor='name'>Name</label>
           <input value={formValues.name} onChange={handleChange} type='text' id='name' />
+        </div>
+        <div>
+          <label htmlFor='title'>Email</label>
+          <input value={formValues.email} onChange={handleChange} type='text' id='email' />
         </div>
         <div>
           <label htmlFor='title'>Role</label>
@@ -75,7 +81,7 @@ function App() {
     setFormValues(initialFormValues);
   }
 
-  const isDisabled = () => !(formValues.name &&  formValues.role);
+  const isDisabled = () => !(formValues.name &&  formValues.email && formValues.role);
 
   return (
     <>
