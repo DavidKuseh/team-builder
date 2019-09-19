@@ -17,17 +17,20 @@ const initialFormValues = {
   role: '',
 }
 
-function TeamMember({ teamMember }) {
+function TeamMember({ teamMember, memberToEdit }) {
   return (
     <div>
       <span>{teamMember.name}</span>
       <span>{teamMember.email}</span>
       <span>{teamMember.role}</span>
+      <span>
+        <button onClick={()=> memberToEdit(teamMember.id)}>Edit Member</button>
+      </span>
     </div>
   );
 }
 
-function TeamList({ teamMembers }) {
+function TeamList({ teamMembers, memberToEdit }) {
   return (
     <>
       <h2>Team List</h2>
@@ -37,13 +40,14 @@ function TeamList({ teamMembers }) {
         <span>Role</span>
       </div>
       <div className="member">
-      <span>{teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } key={uuid()}/>)}</span>
+      <span>{teamMembers.map(teamMember => <TeamMember teamMember={ teamMember } memberToEdit={memberToEdit} key={TeamMember.id}/>)}</span>
       </div>
     </>
   );
 } 
 
 function Form({formValues, handleChange, onSubmit, isDisabled}) {
+  // debugger
   return (
     <>
       <h2>Add Team Member</h2>
@@ -67,9 +71,10 @@ function Form({formValues, handleChange, onSubmit, isDisabled}) {
 }
 
 function App() {
-  
+
   const [teamMembers, setTeamMembers] = useState(initialTeamMembers);
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [editMode, setEditMode] = useState(false);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.id]: e.target.value })
@@ -77,11 +82,21 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(editMode) {
+      initialTeamMembers.filter(member => {
+        console.log(member.id === formValues.id)
+      })
+    }
     setTeamMembers( [...teamMembers, {...formValues, id: uuid()} ]);
     setFormValues(initialFormValues);
   }
 
   const isDisabled = () => !(formValues.name &&  formValues.email && formValues.role);
+
+  const memberToEdit = (memberId) => {
+    setFormValues(teamMembers.find(teamMember => teamMember.id === memberId))
+    setEditMode(true)
+  }
 
   return (
     <>
@@ -92,10 +107,11 @@ function App() {
             handleChange={handleChange}
             onSubmit={onSubmit}
             isDisabled={isDisabled}
+            editMode={editMode}
           />
         </div>
         <div className='team'>
-          <TeamList teamMembers={ teamMembers } />
+          <TeamList teamMembers={ teamMembers } memberToEdit={memberToEdit} />
         </div>
       </div>
     </>
